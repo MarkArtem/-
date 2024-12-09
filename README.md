@@ -1,107 +1,66 @@
-git init
-Reinitialized existing Git repository in C:/Users/Марк/Desktop/GIT/.git/
-PS C:\Users\Марк\Desktop\GIT> git add .
-PS C:\Users\Марк\Desktop\GIT>
-PS C:\Users\Марк\Desktop\GIT> git commit -m ID
-[master (root-commit) 98b900e] ID
- 4 files changed, 0 insertions(+), 0 deletions(-)
- create mode 100644 ID.txt
- create mode 100644 "\320\222\320\276\320\267\321\200\320\260\321\201\321\202.txt"
- create mode 100644 "\320\230\320\274\321\217.txt"
- create mode 100644 "\320\232\320\273\320\260\321\201\321\201.txt"
-PS C:\Users\Марк\Desktop\GIT> git add .
-PS C:\Users\Марк\Desktop\GIT> git commit -m Имя
-[master 752e04f] Имя
- 2 files changed, 4 insertions(+)
-PS C:\Users\Марк\Desktop\GIT> git log
-commit 752e04fb8812f87d5af47db261dc63fa271fabe9 (HEAD -> master)
-Author: Mark Emelyanov <novimak23@gmail.com>
-Date:   Sun Dec 8 22:32:46 2024 +0300
+class Student:
+    def __init__(self, student_id, name, age, grade):
+        self.student_id = student_id
+        self.name = name
+        self.age = age
+        self.grade = grade
 
-    Имя
+    def __str__(self):
+        return f"ID: {self.student_id}, Имя: {self.name}, Возраст: {self.age}, Класс: {self.grade}"
 
-commit 98b900e49392b306239338e406c8e4e2d94c45fa
-Author: Mark Emelyanov <novimak23@gmail.com>
-Date:   Sun Dec 8 22:31:35 2024 +0300
+class Grade:
+    def __init__(self):
+        self.grades = {}  
 
-    ID
-PS C:\Users\Марк\Desktop\GIT> git add .
-PS C:\Users\Марк\Desktop\GIT> git commit -m Возраст
-[master d6ea82b] Возраст
- 1 file changed, 2 insertions(+)
-PS C:\Users\Марк\Desktop\GIT> git add .
-PS C:\Users\Марк\Desktop\GIT> git commit -m Класс
-[master c6a73e4] Класс
- 1 file changed, 2 insertions(+)
-PS C:\Users\Марк\Desktop\GIT> git checkout -b Grade
-Switched to a new branch 'Grade'
-PS C:\Users\Марк\Desktop\GIT> git add .
-PS C:\Users\Марк\Desktop\GIT> git commit -m Математика
-[Grade bf81da4] Математика
- 2 files changed, 2 insertions(+)
- create mode 100644 "\320\220\320\275\320\263\320\273\320\270\320\271\321\201\320\272\320\270\320\271.txt"
- create mode 100644 "\320\234\320\260\321\202\320\265\320\274\320\260\321\202\320\270\320\272\320\260.txt"
-PS C:\Users\Марк\Desktop\GIT> git add .
-PS C:\Users\Марк\Desktop\GIT> git commit -m Английский
-[Grade 2c49e3c] Английский
- 1 file changed, 2 insertions(+)
-PS C:\Users\Марк\Desktop\GIT> git checkout -b Attendance
-Switched to a new branch 'Attendance'
-PS C:\Users\Марк\Desktop\GIT> git add .
-PS C:\Users\Марк\Desktop\GIT> git commit -m Present
-[Attendance 97d1ba5] Present
- 1 file changed, 2 insertions(+)
- create mode 100644 Present.txt
-PS C:\Users\Марк\Desktop\GIT> git add .
-PS C:\Users\Марк\Desktop\GIT> git commit -m Absent
-[Attendance 9cbfbe4] Absent
- 1 file changed, 2 insertions(+)
- create mode 100644 Absent.txt
-PS C:\Users\Марк\Desktop\GIT> git log
-commit 9cbfbe41fde6519826375489e55a1433faaf6772 (HEAD -> Attendance)
-Author: Mark Emelyanov <novimak23@gmail.com>
-Date:   Sun Dec 8 22:53:19 2024 +0300
+    def add_grade(self, student_id, subject, grade):
+        if student_id not in self.grades:
+            self.grades[student_id] = {}
+        self.grades[student_id][subject] = grade
 
-    Absent
+    def get_grades(self, student_id):
+        return self.grades.get(student_id, "No grades available")
 
-commit 97d1ba556b1ab7f55415e90510ad7e8a60771d13
-Author: Mark Emelyanov <novimak23@gmail.com>
-Date:   Sun Dec 8 22:51:48 2024 +0300
+    def __str__(self):
+        return str(self.grades)
 
-    Present
+class Attendance:
+    def __init__(self):
+        self.attendance = {}  
 
-commit 2c49e3caed3d2ea40f8a59705b1b9ec8fb12fb3a (Grade)
-Author: Mark Emelyanov <novimak23@gmail.com>
-Date:   Sun Dec 8 22:42:35 2024 +0300
+    def mark_attendance(self, student_id, date, status):
+        if student_id not in self.attendance:
+            self.attendance[student_id] = {}
+        self.attendance[student_id][date] = status
 
-    Английский
+    def get_attendance(self, student_id):
+        return self.attendance.get(student_id, "No attendance records available")
 
-commit bf81da40d87b83fba01594d00807c670ff8a3e20
-Author: Mark Emelyanov <novimak23@gmail.com>
-Date:   Sun Dec 8 22:40:50 2024 +0300
+    def __str__(self):
+        return str(self.attendance)
 
-    Математика
+students = []
+grades = Grade()
+attendance = Attendance()
 
-commit c6a73e4ac5f45771db73fa3feaff53ceddfacd02 (master)
-Author: Mark Emelyanov <novimak23@gmail.com>
-Date:   Sun Dec 8 22:35:05 2024 +0300
+students.append(Student(1, "Алиса", 15, 1))
+students.append(Student(2, "Боб", 16, 2))
 
-    Класс
+grades.add_grade(1, "Математика", 5)
+grades.add_grade(1, "Английский", 4)
+grades.add_grade(2, "Математика", 3)
+grades.add_grade(2, "Английский", 4)
 
-commit d6ea82b8c5b8a2e70369ea5ad7ef41b4bac0520e
-Author: Mark Emelyanov <novimak23@gmail.com>
-Date:   Sun Dec 8 22:33:45 2024 +0300
+attendance.mark_attendance(1, "2024-12-01", "Present")
+attendance.mark_attendance(1, "2024-12-02", "Abesent")
+attendance.mark_attendance(2, "2024-12-03", "Absent")
+attendance.mark_attendance(2, "2024-12-01", "Prsent")
 
-    Возраст
+print("Студенты:")
+for student in students:
+    print(student)
 
-commit 752e04fb8812f87d5af47db261dc63fa271fabe9
-Author: Mark Emelyanov <novimak23@gmail.com>
-Date:   Sun Dec 8 22:32:46 2024 +0300
+print("Оценки:")
+print(grades)
 
-    Имя
-
-commit 98b900e49392b306239338e406c8e4e2d94c45fa
-Author: Mark Emelyanov <novimak23@gmail.com>
-Date:   Sun Dec 8 22:31:35 2024 +0300
-
-    ID
+print("Посещаемость:")
+print(attendance)
